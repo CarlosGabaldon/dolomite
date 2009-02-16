@@ -1,1 +1,41 @@
 Dolomite
+
+Ubuntu JEOS on VMWare
+---------------------
+If running on Ubuntu JEOS (http://www.ubuntu.com/products/whatisubuntu/serveredition/jeos)
+on VMWare.  Use the install/install_openvmtools.sh script to install the fast ethernet
+and other VMWare tools
+
+Quick Start:
+
+- Download install/install_openvmtools.sh script from github.com
+- Run script
+
+    sudo ./install_openvmtools.sh
+    
+Note: script currently reboots the image at the end.
+
+MemcacheDB
+---------------------
+Install script for Ubuntu 8.10
+
+Script installs depedency packages, downloads latest SVN version of
+memcachedb from http://memcachedb.googlecode.com/svn/trunk/, compiles
+and installs it.
+
+Quick Start:
+
+- Download install/install_memcachedb.sh script from github.com
+- Run script
+
+    sudo ./install_memcachedb.sh
+    
+- Run memcachedb as daemon process
+
+    sudo su -
+    memcachedb -p21201 -u root -d -r -H /home/ccarey/memcachedb/testenv -N -v >/var/log/memcachedb 2>&1
+    exit
+    
+- Run the benchmark script - ./memcache/tools/mcben.py
+- Run the tests - ./memcache/tools/mdbtest.py (2 tests currently fail out of the box)
+
