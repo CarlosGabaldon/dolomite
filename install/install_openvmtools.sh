@@ -1,6 +1,6 @@
 #!/bin/bash
 
-OPEN_VM_TOOLS_VERSION="2009.01.21-142982"
+OPEN_VM_TOOLS_VERSION="2009.02.18-148847"
 OPEN_VM_TOOLS_MIRROR_PATH="http://internap.dl.sourceforge.net/sourceforge/open-vm-tools"
 
 # Prior to running this script, you must attach the VMWare Tools iso to the cdrom drive.
@@ -84,7 +84,7 @@ fi
 umount /media/cdrom0
 echo
 
-installPackages build-essential libproc-dev libicu-dev libdumbnet-dev linux-headers-`uname -r`
+installPackages build-essential libproc-dev libicu-dev libdumbnet-dev libglib2.0-dev linux-headers-`uname -r`
 
 cd open-vm-tools-*
 ./configure --without-x
