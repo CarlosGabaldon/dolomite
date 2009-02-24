@@ -7,6 +7,10 @@ warnings.filterwarnings('ignore','.*apt API not stable yet.*')
 
 import apt
 
+def create_dir(name):
+    if not os.path.exists(name):
+        os.mkdir(name)
+        
 def dependenciesMet(packages):
     met = True
     cache = apt.Cache()
@@ -18,12 +22,10 @@ def dependenciesMet(packages):
     return met
     
 def main():
-    if not os.path.exists('tmp'):
-        os.mkdir('tmp')
-    if not os.path.exists('build'):
-        os.mkdir('build')
-    if not os.path.exists('build/bin'):
-        os.mkdir('build/bin')
+    create_dir('tmp')
+    create_dir('build')
+    create_dir('build/bin')
+
     os.chdir('tmp')
 
     print("checking build depedencies...")
