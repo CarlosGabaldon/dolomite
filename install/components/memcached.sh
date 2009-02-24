@@ -45,7 +45,8 @@ if [ ! $? -eq 0 ]; then
 fi
 echo
 
-cd memcached
+chmod 755 memcached-1.2.6
+cd memcached-1.2.6
 ./configure
 if [ ! $? -eq 0 ]; then
     die "Configuration of memcached was not successful.  Check errors for additional packages not installed by the script and try again."
