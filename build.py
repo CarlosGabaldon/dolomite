@@ -20,8 +20,35 @@ def dependenciesMet(packages):
             print("%s package is not installed." % package)
             met = False
     return met
+
+def copy_built_files(files, build_dir):
+    for f in files:
+        shutil.copy('tmp/%s/%s' % (build_dir, f), 'build/bin')
+        
+def usage():
+    print("Usage: %s component_name" % sys.argv[0])
     
+def get_config(component):
+    config_file = open("%s-conf" % component)
+    config = { }
+    for setting in config_file:
+        if len(setting.split('=')) > 1:
+            if (len(setting.split(' '))) > 1:
+                config[setting.split('=')[0]] = setting.rstrip('\n').split('=')[1].split(' ')
+            else:
+                config[setting.split('=')[0]] = setting.rstrip('\n').split('=')[1]
+    return config
+
 def main():
+    if len(sys.argv) != 2:
+        usage()
+        sys.exit(1)
+    component = sys.argv[1]
+    
+    print("building %s" % component)
+
+    config = get_config(component)
+    
     create_dir('tmp')
     create_dir('build')
     create_dir('build/bin')
@@ -29,22 +56,23 @@ def main():
     os.chdir('tmp')
 
     print("checking build depedencies...")
-    if not dependenciesMet(['libevent1','libevent-dev']):
-        print("install dependencies and try again")
+    if not dependenciesMet(config['BUILDDEP']):
+        print("install dependencies using the following command and try again")
+        print("sudo apt-get install %s" % " ".join(config['BUILDDEP']))
         sys.exit(1)
         
     print("downloading source...")
     try:
-        proc.check_call(['wget','-c', 'http://www.danga.com/memcached/dist/memcached-1.2.6.tar.gz'])
+        proc.check_call(['wget','-c', '%s/%s' % (config['SOURCEPATH'], config['SOURCETARFILE'])])
     except proc.CalledProcessError:
         sys.exit(1)
 
     print("extracting tar ball...")    
-    memcached = tarfile.open(name='memcached-1.2.6.tar.gz', mode='r:gz')
+    memcached = tarfile.open(name=config['SOURCETARFILE'], mode='r:gz')
     memcached.extractall()
     
     print("configuring...")
-    os.chdir('memcached-1.2.6')
+    os.chdir(config['BUILDDIR'])
     try:
         proc.check_call(['./configure'])
     except proc.CalledProcessError:
@@ -58,8 +86,7 @@ def main():
 
     print("copying built files...")
     os.chdir('../..')
-    shutil.copy('tmp/memcached-1.2.6/memcached', 'build/bin')
-    shutil.copy('tmp/memcached-1.2.6/memcached-debug', 'build/bin')
+    copy_built_files(config['INSTALLFILES'], config['BUILDDIR'])
     
 if __name__ == "__main__":
     main()

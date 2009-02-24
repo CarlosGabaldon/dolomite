@@ -2,3 +2,4 @@ BUILDDEP=libevent1 libevent-dev
 SOURCETARFILE=memcached-1.2.6.tar.gz
 SOURCEPATH=http://www.danga.com/memcached/dist
 INSTALLFILES=memcached memcached-debug
+BUILDDIR=memcached-1.2.6
