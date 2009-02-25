@@ -22,8 +22,11 @@ def dependenciesMet(packages):
     return met
 
 def copy_built_files(files, build_dir):
-    for f in files:
-        shutil.copy('tmp/%s/%s' % (build_dir, f), 'build/bin')
+    if files is list:
+        for f in files:
+            shutil.copy('tmp/%s/%s' % (build_dir, f), 'build/bin')
+    else:
+        shutil.copy('tmp/%s/%s' % (build_dir, files), 'build/bin')
         
 def usage():
     print("Usage: %s component_name" % sys.argv[0])
