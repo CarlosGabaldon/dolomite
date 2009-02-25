@@ -1,0 +1,5 @@
+BUILDDEP=db4.7-util libdb4.7-dev libevent1 libevent-dev
+SOURCETARFILE=memcachedb-1.2.0.tar.gz
+SOURCEPATH=http://memcachedb.googlecode.com/files
+INSTALLFILES=memcachedb
+BUILDDIR=memcachedb-1.2.0
