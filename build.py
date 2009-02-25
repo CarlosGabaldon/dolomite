@@ -22,7 +22,7 @@ def dependenciesMet(packages):
     return met
 
 def copy_built_files(files, build_dir):
-    if files is list:
+    if type(files) is list:
         for f in files:
             shutil.copy('tmp/%s/%s' % (build_dir, f), 'build/bin')
     else:
