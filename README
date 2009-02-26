@@ -2,12 +2,23 @@ Dolomite
 
 Getting started with your Dolomite foundation
 ---------------------------------------------
+- Install the virtualenv python package on your machine
+
+    easy_install virtualenv
+    
+    OR
+    
+    sudo easy_install virtualenv
+    
 - Download create_virtualenv.sh and execute in a place where 
   you want your environment, e.g. /home/youruser
   
     cd /home/youruser
     ./create_virtualenv.sh
     
+  Note: this creates a directory called dolomite-env at the spot
+  where you run the script.
+  
 - Enter your dolomite foundation environment by executing the
   script:
   
