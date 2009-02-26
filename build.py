@@ -53,6 +53,7 @@ def main():
     config = get_config(component)
     
     create_dir('tmp')
+    create_dir('tools')
     create_dir('tools/dolomite-env')
     create_dir('tools/dolomite-env/bin')
 

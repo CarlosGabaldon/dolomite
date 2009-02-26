@@ -10,8 +10,11 @@ Getting started with your Dolomite foundation
     
     sudo easy_install virtualenv
     
-- Download create_virtualenv.sh and execute in a place where 
-  you want your environment, e.g. /home/youruser
+- Download create_virtualenv.sh 
+  ( http://github.com/cccarey/dolomite/raw/master/create_virtualenv.sh )
+  
+- Execute create_virtualenv.sh in a place where you want your 
+  environment, e.g. /home/youruser
   
     cd /home/youruser
     ./create_virtualenv.sh
@@ -19,11 +22,14 @@ Getting started with your Dolomite foundation
   Note: this creates a directory called dolomite-env at the spot
   where you run the script.
   
-- Enter your dolomite foundation environment by executing the
-  script:
+- Activate your dolomite foundation environment with the command:
   
-    ./dolomite
+    source dolomite-env/bin/activate
 
+- When done, you can deactivate the dolomite foundation environment:
+
+    deactivate
+    
 Other tools available in this repository:
     
 Ubuntu JEOS on VMWare
