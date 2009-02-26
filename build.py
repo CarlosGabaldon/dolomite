@@ -24,9 +24,9 @@ def dependenciesMet(packages):
 def copy_built_files(files, build_dir):
     if type(files) is list:
         for f in files:
-            shutil.copy('tmp/%s/%s' % (build_dir, f), 'build/bin')
+            shutil.copy('tmp/%s/%s' % (build_dir, f), 'tools/dolomite-env/bin')
     else:
-        shutil.copy('tmp/%s/%s' % (build_dir, files), 'build/bin')
+        shutil.copy('tmp/%s/%s' % (build_dir, files), 'tools/dolomite-env/bin')
         
 def usage():
     print("Usage: %s component_name" % sys.argv[0])
@@ -53,8 +53,8 @@ def main():
     config = get_config(component)
     
     create_dir('tmp')
-    create_dir('build')
-    create_dir('build/bin')
+    create_dir('tools/dolomite-env')
+    create_dir('tools/dolomite-env/bin')
 
     os.chdir('tmp')
 

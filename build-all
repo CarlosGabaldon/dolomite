@@ -1,0 +1,20 @@
+#!/bin/bash
+function die()
+{
+    echo $*
+    exit 1
+}
+
+./build.py memcached
+if [ ! $? -eq 0 ]; then
+    die "Encountered error building memcached.  Check messages and try again."
+fi
+
+./build.py memcachedb
+if [ ! $? -eq 0 ]; then
+    die "Encountered error building memcachedb.  Check messages and try again."
+fi
+
+cd tools
+
+tar cvvfz ../tools-ubuntu-8.10.tgz .
