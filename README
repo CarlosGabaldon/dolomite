@@ -25,6 +25,14 @@ Getting started with your Dolomite foundation
 - Activate your dolomite foundation environment with the command:
   
     source dolomite-env/bin/activate
+    
+- Start local memcached daemon:
+
+    start-memcached
+    
+- Test local memcached daemon:
+
+    test-memcached
 
 - When done, you can deactivate the dolomite foundation environment:
 

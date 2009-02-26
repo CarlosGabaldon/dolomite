@@ -4,12 +4,14 @@ import subprocess as proc
 import warnings
 
 warnings.filterwarnings('ignore','.*apt API not stable yet.*')
-
 import apt
+
+TOOLS_BIN_FOLDER = 'tmp/tar/dolomite-env/bin'
 
 def create_dir(name):
     if not os.path.exists(name):
-        os.mkdir(name)
+        #os.mkdir(name)
+        os.makedirs(name)
         
 def dependenciesMet(packages):
     met = True
@@ -24,9 +26,9 @@ def dependenciesMet(packages):
 def copy_built_files(files, build_dir):
     if type(files) is list:
         for f in files:
-            shutil.copy('tmp/%s/%s' % (build_dir, f), 'tools/dolomite-env/bin')
+            shutil.copy('tmp/%s/%s' % (build_dir, f), TOOLS_BIN_FOLDER)
     else:
-        shutil.copy('tmp/%s/%s' % (build_dir, files), 'tools/dolomite-env/bin')
+        shutil.copy('tmp/%s/%s' % (build_dir, files), TOOLS_BIN_FOLDER)
         
 def usage():
     print("Usage: %s component_name" % sys.argv[0])
@@ -52,10 +54,7 @@ def main():
 
     config = get_config(component)
     
-    create_dir('tmp')
-    create_dir('tools')
-    create_dir('tools/dolomite-env')
-    create_dir('tools/dolomite-env/bin')
+    create_dir(TOOLS_BIN_FOLDER)
 
     os.chdir('tmp')
 

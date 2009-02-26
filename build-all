@@ -5,6 +5,8 @@ function die()
     exit 1
 }
 
+rm -rf tmp
+
 ./build.py memcached
 if [ ! $? -eq 0 ]; then
     die "Encountered error building memcached.  Check messages and try again."
@@ -15,6 +17,8 @@ if [ ! $? -eq 0 ]; then
     die "Encountered error building memcachedb.  Check messages and try again."
 fi
 
-cd tools
+cp -r tools/* tmp/tar/dolomite-env/bin
+
+cd tmp/tar
 
 tar cvvfz ../tools-ubuntu-8.10.tgz .

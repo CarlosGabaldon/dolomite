@@ -1,0 +1,33 @@
+#!/usr/bin/env python
+import memcache
+import unittest
+
+class MemcachedTest(unittest.TestCase):
+    
+    def setUp(self):
+        self.mc = memcache.Client(['127.0.0.1:11211'], debug=0)
+        
+    def testSetGet(self):
+        self.mc.set("test_write", "my test value")
+        self.failUnless(self.mc.get("test_write") == "my test value", "did not read correct value")
+        
+    def testSetDelete(self):
+        self.mc.set("test_write", "my test value to delete")
+        self.mc.delete("test_write")
+        self.assert_(self.mc.get("test_write") is None)
+        
+def run_tests():
+    results = unittest.TestResult()
+    test_suite = suite = unittest.TestLoader().loadTestsFromTestCase(MemcachedTest)
+
+    test_suite.run(results)
+    
+    if results.wasSuccessful:
+        print("Memcached test passed... your foundation is solid!")
+    else:
+        print("Failed!")
+        print(results)
+        
+    
+if __name__ == "__main__":
+    run_tests()
