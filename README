@@ -1,5 +1,20 @@
 Dolomite
 
+Getting started with your Dolomite foundation
+---------------------------------------------
+- Download create_virtualenv.sh and execute in a place where 
+  you want your environment, e.g. /home/youruser
+  
+    cd /home/youruser
+    ./create_virtualenv.sh
+    
+- Enter your dolomite foundation environment by executing the
+  script:
+  
+    ./dolomite
+
+Other tools available in this repository:
+    
 Ubuntu JEOS on VMWare
 ---------------------
 If running on Ubuntu JEOS ( http://www.ubuntu.com/products/whatisubuntu/serveredition/jeos )
